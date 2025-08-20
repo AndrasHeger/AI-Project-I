@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI based sleep efficiency predictor</title>
+    <script>
+        function addDaysForm() {
+            const numDays = document.getElementById("num_days").value;
+            const container = document.getElementById("days_container");
+            container.innerHTML = "";  // Clear existing forms
+
+            for (let i = 0; i < numDays; i++) {
+                const dayForm = `
+                    <fieldset>
+                        <legend>Day ${i + 1} Data:</legend>
+                        <label for="Age_${i}">Age:</label>
+                        <input type="number" name="Age_${i}" required><br><br>
+
+                        <label for="Gender_${i}">Gender:</label>
+                        <select name="Gender_${i}" required>
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select><br><br>
+
+                        <label for="Bedtime_${i}">Bedtime (24-hour format, e.g., 22.5):</label>
+                        <input type="text" name="Bedtime_${i}" required><br><br>
+
+                        <label for="Wakeup_time_${i}">Wakeup Time (24-hour format, e.g., 7.0):</label>
+                        <input type="text" name="Wakeup_time_${i}" required><br><br>
+                        
+                        <label for="Sleep_duration_${i}">Sleep Duration (hours):</label>
+                        <input type="text" name="Sleep_duration_${i}" required><br><br>
+
+                        <label for="Deep_sleep_percentage_${i}">Deep Sleep Percentage:</label>
+                        <input type="text" name="Deep_sleep_percentage_${i}" required><br><br>
+
+                        <label for="Light_sleep_percentage_${i}">Light Sleep Percentage:</label>
+                        <input type="text" name="Light_sleep_percentage_${i}" required><br><br>
+
+                        <label for="Awakenings_${i}">Awakenings:</label>
+                        <input type="number" name="Awakenings_${i}" required><br><br>
+
+                        <label for="Alcohol_${i}">Alcohol Consumption:</label>
+                        <input type="text" name="Alcohol_${i}" required><br><br>
+
+                        <label for="Smoking_status_${i}">Smoking Status:</label>
+                        <select name="Smoking_status_${i}" required>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select><br><br>
+
+                        <label for="Exercise_frequency_${i}">Exercise Frequency (times/week):</label>
+                        <input type="number" name="Exercise_frequency_${i}" required><br><br>
+                    </fieldset>
+                    <br>
+                `;
+                container.innerHTML += dayForm;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Multi-Day Sleep Quality Predictor</h2>
+    <form action="/submit" method="post">
+        <label for="num_days">Number of Days:</label>
+        <input type="number" id="num_days" name="num_days" required onchange="addDaysForm()"><br><br>
+        <div id="days_container"></div>
+        <input type="submit" value="Predict Sleep Efficiency">
+    </form>
+</body>
+</html>
